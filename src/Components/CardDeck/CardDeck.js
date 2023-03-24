@@ -6,7 +6,7 @@ const CardDeck = ({ cards, clickHandler }) => {
     <div className={style.cardlayout}>
       {cards.map((card) => {
         return (
-          <Card key={card.id} number = {card.number} clickHandler = {clickHandler} 
+          <Card key={card.id} character = {card.character} clickHandler = {clickHandler} img = {card.img} 
           />
         );
       })}

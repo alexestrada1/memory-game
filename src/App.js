@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { cards } from "./util/cardDeck";
 import CardDeck from "./Components/CardDeck/CardDeck";
-import shuffle from "./Components/util/shuffle";
-import Score from "./Components/Score/Score";
+import shuffle from "./util/shuffle";
+import Header from "./Components/Header/Header";
+import style from "../src/App.module.css";
+
 const App = () => {
-  const [cardDeck, setCardDeck] = useState([
-    { id: 1, number: 1 },
-    { id: 2, number: 2 },
-    { id: 3, number: 3 },
-    { id: 4, number: 4 },
-  ]);
+  const [cardDeck, setCardDeck] = useState(cards);
   const [clickedCards, setClickedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [showWinScreen, setShowWinScreen] = useState(false);
+
   useEffect(() => {
     if (score > highScore) {
       setHighScore(score);
@@ -23,6 +23,11 @@ const App = () => {
     setCardDeck(newDeck);
   }, []);
 
+  useEffect(() => {
+    if (score === 8) {
+      setShowWinScreen(true);
+    }
+  }, [score]);
 
   const handleScore = (card) => {
     if (clickedCards.includes(card)) {
@@ -32,6 +37,7 @@ const App = () => {
       setScore(score + 1);
     }
   };
+
   const handleCardClick = (e) => {
     const cardValue = e.currentTarget.getAttribute("value");
 
@@ -44,10 +50,28 @@ const App = () => {
     shuffle(newDeck);
     setCardDeck(newDeck);
   };
+
+  const handleReset = () => {
+    setScore(0);
+    setClickedCards([]);
+    setShowWinScreen(false);
+    const newDeck = shuffle([...cardDeck]);
+    setCardDeck(newDeck);
+  };
+
   return (
     <div className="App">
-      <Score score={score} highScore={highScore} />
-      <CardDeck cards={cardDeck} clickHandler={handleCardClick} />
+      <Header score={score} highScore={highScore} />
+      <div className={style.container}>
+        {showWinScreen ? (
+          <div className={style.winScreen}>
+            <h2>You won!</h2>
+            <button onClick={handleReset}>Play again</button>
+          </div>
+        ) : (
+          <CardDeck cards={cardDeck} clickHandler={handleCardClick} />
+        )}
+      </div>
     </div>
   );
 };

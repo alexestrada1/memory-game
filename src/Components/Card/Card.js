@@ -1,9 +1,11 @@
 import React from "react";
 import style from "./Card.module.css"
-const Card = ({ number, clickHandler}) => {
+const Card = ({ character, clickHandler, img}) => {
     return(
-        <div className={style.card} onClick={clickHandler} value={number}>
-            <h2>{number}</h2>
+        <div className={style.card} onClick={clickHandler} value={character}>
+            <img
+            alt={character} 
+            src={img}></img>
             </div>
     )
 }

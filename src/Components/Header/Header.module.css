@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'southPark';
+    src: url("/src/util/southPark.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    margin: 0;
+}
+.header{
+    height:20vh; 
+    font-family: 'southPark', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    margin: 0;
+    clear: both;
+
+}
+.header h1{
+    font-size: 50px;
+}
+.scores{
+    font-size: 20px;
+}

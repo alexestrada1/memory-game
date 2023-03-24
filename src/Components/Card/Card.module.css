@@ -1,8 +1,17 @@
 .card{
-    height: 35vh;
-    width: 200px;
-    padding: 20px;
-    border: 1px solid #c9c9c9;
-    border-radius: 7px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    width: 250px;
+    height: 400;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card img {
+    height:150px;
 }
